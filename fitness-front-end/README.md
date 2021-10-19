@@ -1,3 +1,6 @@
+TESTING A PULL REQUEST
+
+
 ## :point_up: **Pitch**
 
 These days, fitness classes can be held anywhere a park, an unfinished basement or a garage- not just at a traditional gym. Certified fitness instructors need an easy way to take the awkwardness out of attendance taking and client payment processing. 
@@ -38,6 +41,13 @@ Instructors can take attendance, request and process payments, create virtual â€
 6. Authenticated `instructor` can create virtual punch pass categories for each type of group fitness class they offer (yoga, insanity, RIPPED, pilates, etc.)
 
 7. Authenticated `user` can reserve a spot in a `class` with available seats open, and can reschedule or cancel their current `reservation` from the mobile app.
+
+
+
+
+
+
+
 
 ## :woman-running:**Stretch**
 

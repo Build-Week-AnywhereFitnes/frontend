@@ -1,73 +1,74 @@
-import React , {useState,useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import * as yup from 'yup';
 
-import axiosWithAuth from './axiosWithAuth'
+// import axiosWithAuth from './axiosWithAuth'
 
 
 const InstructorAuth = () => {
 
-    const [buttonDisabled , setButtonDisabled] = useState(true) 
+    const [buttonDisabled, setButtonDisabled] = useState(true)
 
-    
+
     const [instructorAuth, setInstructorAuth] = useState({
         name: "",
-        surname:"",
-        ssn:"",
+        surname: "",
+        ssn: "",
         email: "",
         licensenumber: "",
-        phonenumber:"",
+        phonenumber: "",
     });
 
-    const [errors, setErrors] = useState({        
+    const [errors, setErrors] = useState({
         name: "",
-        surname:"",
-        ssn:"",
+        surname: "",
+        ssn: "",
         email: "",
         licensenumber: "",
-        phonenumber:"",
+        phonenumber: "",
     });
 
     const formSchema = yup.object().shape({
 
-        name: yup.string().min(2,"Name must be at least 2 characters").required("Name is Required"),
-        surname: yup.string().min(2,"Surname must be at least 2 characters").required("Surname is Required"),
-        ssn: yup.string().matches(9,"Enter a valid SSN"),
+        name: yup.string().min(2, "Name must be at least 2 characters").required("Name is Required"),
+        surname: yup.string().min(2, "Surname must be at least 2 characters").required("Surname is Required"),
+        ssn: yup.string().matches(9, "Enter a valid SSN"),
         email: yup.string().email("Enter validate email"),
-        licensenumber: yup.string().matches(9,"Enter a valid license"),
-        phonenumber: yup.string().matches(9,"Enter a valid phone number"),
-      })
+        licensenumber: yup.string().matches(9, "Enter a valid license"),
+        phonenumber: yup.string().matches(9, "Enter a valid phone number"),
+    })
 
-    const setFormErrors = (name,value) =>{
+    const setFormErrors = (name, value) => {
         yup.reach(formSchema, name).validate(value)
-        .then(valid => { setErrors({...errors, [name]: ""});
-        })
-        .catch(err => {
-            console.log('errooorrsss', err.errors)
-            setErrors({...errors, [name]: err.errors[0]});
-        });
+            .then(valid => {
+                setErrors({ ...errors, [name]: "" });
+            })
+            .catch(err => {
+                console.log('errooorrsss', err.errors)
+                setErrors({ ...errors, [name]: err.errors[0] });
+            });
 
     }
 
     const handleChange = (e) => {
 
-        setInstructorAuth({...instructorAuth,[e.target.name]: e.target.value});
+        setInstructorAuth({ ...instructorAuth, [e.target.name]: e.target.value });
         setFormErrors(e.target.name, e.target.value)
-        console.log('instructor',instructorAuth)
+        console.log('instructor', instructorAuth)
     };
 
     useEffect(() => {
         formSchema.isValid(instructorAuth).then(valid => {
-          setButtonDisabled(!valid);
+            setButtonDisabled(!valid);
         });
-      }, [instructorAuth]);
+    }, [instructorAuth]);
 
-    const formSubmit = (e) =>{
+    const formSubmit = (e) => {
         e.preventDefault()
 
         console.log(instructorAuth)
 
-  
+
         // axiosWithAuth().post('/instructor',instructor)
         // .then(res=>{
         //     const tokenid = res.data.token
@@ -86,29 +87,29 @@ const InstructorAuth = () => {
         <ComponentContainer>
             <ModalContainer>
 
-                <FormGroup  onSubmit={formSubmit}  > 
+                <FormGroup onSubmit={formSubmit}  >
 
-                <Label> Name: 
+                    <Label> Name:
                         <Input
                             type="text"
                             name="name"
                             value={instructorAuth.name}
                             onChange={handleChange}
                         />
-                        <div style ={{color:'red'}}>{errors.name}</div>
+                        <div style={{ color: 'red' }}>{errors.name}</div>
                     </Label>
 
-                    <Label> Surnamae: 
+                    <Label> Surname:
                         <Input
                             type="text"
                             name="surname"
-                            value={instructorAuth.surnamae}
+                            value={instructorAuth.surname}
                             onChange={handleChange}
                         />
-                        <div style ={{color:'red'}}>{errors.surname}</div>
+                        <div style={{ color: 'red' }}>{errors.surname}</div>
                     </Label>
 
-                    <Label> SSN : 
+                    <Label> SSN :
                         <Input
                             type="text"
                             pattern="[1-9]*"
@@ -116,31 +117,31 @@ const InstructorAuth = () => {
                             value={instructorAuth.ssn}
                             onChange={handleChange}
                         />
-                        <div style ={{color:'red'}}>{errors.ssn}</div>
+                        <div style={{ color: 'red' }}>{errors.ssn}</div>
                     </Label>
 
-                    <Label> Email: 
+                    <Label> Email:
                         <Input
                             type="email"
                             name="email"
                             value={instructorAuth.email}
                             onChange={handleChange}
                         />
-                        <div style ={{color:'red'}}>{errors.email}</div>
+                        <div style={{ color: 'red' }}>{errors.email}</div>
                     </Label>
 
-                    <Label> License: 
-                        <Input 
-                            type="number" 
+                    <Label> License:
+                        <Input
+                            type="number"
                             name="licensenumber"
                             pattern="[1-9]*"
                             value={instructorAuth.licensenumber}
                             onChange={handleChange}
                         />
-                        <div style ={{color:'red'}}>{errors.licensenumber}</div>
+                        <div style={{ color: 'red' }}>{errors.licensenumber}</div>
                     </Label>
 
-                    <Label> Phone Number: 
+                    <Label> Phone Number:
                         <Input
                             type="number"
                             name="phonenumber"
@@ -148,10 +149,10 @@ const InstructorAuth = () => {
                             value={instructorAuth.phonenumber}
                             onChange={handleChange}
                         />
-                        <div style ={{color:'red'}}>{errors.phonenumber}</div>
+                        <div style={{ color: 'red' }}>{errors.phonenumber}</div>
                     </Label>
 
-                    <Button type='submit'  disabled ={buttonDisabled}  > Request Authorization </Button>
+                    <Button type='submit' disabled={buttonDisabled}  > Request Authorization </Button>
 
                 </FormGroup>
             </ModalContainer>

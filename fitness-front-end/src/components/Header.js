@@ -1,29 +1,29 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import styled from 'styled-components';
 
 
 const Header = (props) => {
 
-    console.log(props)
+  console.log(props)
 
-    return (
-        <HeaderStyle>
-            <p>Anywhere Fitness</p>
-            <MenuStyle>
+  return (
+      <HeaderStyle>
+        <p>Anywhere Fitness</p>
+        <MenuStyle>
 
-                {/* <li><Link to="/"> Home </Link></li> */}
-                <li><Link to="/login"> Login </Link></li>
-                <li><Link to="/instructorAuth"> Instructor Authorization</Link></li>
-                <li><Link to="/instructor"> Instructor </Link></li>
+          {/* <li><Link to="/"> Home </Link></li> */}
+          <li><Link to="/login"> Login </Link></li>
+          <li><Link to="/instructorAuth"> Instructor Authorization</Link></li>
+          <li><Link to="/instructor"> Instructor </Link></li>
+          <li><Link to='/instructorPage'>Instructor Page</Link></li>
 
-            </MenuStyle>
-        </HeaderStyle>
-    );
+        </MenuStyle>
+      </HeaderStyle>
+  );
 }
 
 export default Header;
-
 
 
 const HeaderStyle = styled.div`

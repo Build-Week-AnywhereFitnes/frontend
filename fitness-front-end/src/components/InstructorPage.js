@@ -32,7 +32,7 @@ const InstructorPage = () => {
 
   return (
       <div>
-        <Table columns={9}>
+        <Table columns={8}>
           <Table.Header>
             <Table.Row>
               <Table.HeaderCell>Class ID</Table.HeaderCell>

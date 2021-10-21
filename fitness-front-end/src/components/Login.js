@@ -19,11 +19,27 @@ const Login = () => {
         });
     };
 
+    // const handleLogin = (e) => {
+    //     e.preventDefault();
+    //     axiosWithAuth()
+    //         .post("/login", login)
+    //         .then((res) => {
+    //             // console.log('RES =', res)
+    //             localStorage.setItem("token", res.data.token);
+    //             props.history.push('/view');
+    //         })
+    //         .catch((err) => {
+    //             // console.log(err.response.data.error);
+    //             setError(err.response.data.error)
+    //         });
+    // };
+
 
     return (
         <ComponentContainer>
             <ModalContainer>
 
+                {/* <FormGroup onSubmit={handleLogin}> */}
                 <FormGroup>
 
                     <Label> Username </Label>

@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import * as yup from 'yup';
-
 // import axiosWithAuth from './axiosWithAuth'
 
 
 const InstructorAuth = () => {
 
     const [buttonDisabled, setButtonDisabled] = useState(true)
-
 
     const [instructorAuth, setInstructorAuth] = useState({
         name: "",
@@ -183,19 +181,19 @@ const Label = styled.label`
 `
 
 const Button = styled.button`
-    padding:1rem;
+    padding: 1rem;
     width: 100%;
 `
 
 const FormGroup = styled.form`
-    padding:1rem;
+    padding: 1rem;
 `
 
 const ComponentContainer = styled.div`
     height: 70%;
     justify-content: center;
     align-items: center;
-    display:flex;
+    display: flex;
 `
 
 const ModalContainer = styled.div`

@@ -56,7 +56,6 @@ const Instructor = () => {
     }
 
 
-
     const handleChange = (e) => {
         e.persist();
         setInstructor({ ...instructor, [e.target.name]: e.target.value });
@@ -70,12 +69,10 @@ const Instructor = () => {
         });
     }, [instructor]);
 
-
     const formSubmit = (e) => {
 
         e.preventDefault()
         console.log(instructor)
-
 
         // axiosWithAuth().post('/instructor',instructor)
         // .then(res=>{

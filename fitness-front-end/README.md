@@ -1,6 +1,3 @@
-Notes to talk to Maby about:
-
-Switch instructor to client*
 
 
 ## :point_up: **Pitch**
@@ -16,7 +13,7 @@ Instructors can take attendance, request and process payments, create virtual â€
 
 1. User can create/register as a `client` and login with the registered credentials.
 
-2. User can create/register as an `instructor` by entering an additional Auth Code during signup, and can login with the registered credentials.
+2. User can create/register as an `instructor` by entering an additional Auth Code during sign-up, and can login with the registered credentials.
 
 3. `client` and `instructor` are both presented with the appropriate on-boarding walkthrough on first sign-in, with an option to skip it.
 
@@ -46,16 +43,25 @@ Instructors can take attendance, request and process payments, create virtual â€
 
 
 
-## :woman-running:**Stretch**
-
-1. Implement payments using PayPal, Stripe or another 3rd party API.
-
-
 
 // __________________________________________________________________________________________________
 
 
+
+______________Credentials:____________
+
+added usernames/passwords for everyone. follow this format:
+
+username: maby (first name from slack)
+
+password: mabypassword (first name + "password")
+
+all unit 4 = admin (can create, update, delete classes)
+all unit 3 = user (can do everything else)
+
+
 _______________ENDPOINTS:_______________
+
 
 backend
 All server-side routing and api [POST] Create a new user /api/auth/register

@@ -8,7 +8,10 @@ import { axiosWithAuth } from './axiosWithAuth';
 // PW: aaronpassword
 
 
-const Login = () => {
+// The url on your end needs to be localhost:3000/api/auth/login
+
+
+const Login = (props) => {
 
     const [login, setLogin] = useState({
         username: "",
@@ -30,11 +33,11 @@ const Login = () => {
             .post("/login", login)
             .then((res) => {
                 console.log('RES =', res)
-                // localStorage.setItem("token", res.data.token);
-                // props.history.push('/view');
+                localStorage.setItem("token", res.data.token);
+                props.history.push('/Instructor'); // WILL CHANGE THE PUSH *** this is just a placeholder for now.
             })
             .catch((err) => {
-                console.log(err.response.data.error);
+                console.log(err);
                 // setError(err.response.data.error)
             });
     };

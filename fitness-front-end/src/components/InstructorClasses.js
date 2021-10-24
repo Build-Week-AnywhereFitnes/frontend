@@ -5,6 +5,7 @@ import * as yup from 'yup';
 import axiosWithAuth from './axiosWithAuth'
 
 const InstructorClasses = () => {
+    const [instructorClasses,setInstructorClasses] = useState({})
 
     const [buttonDisabled, setButtonDisabled] = useState(true)
 
@@ -74,21 +75,23 @@ const InstructorClasses = () => {
     const formSubmit = (e) => {
         e.preventDefault()
         console.log(classes)
-        axiosWithAuth().post('/InstructorClasses',classes)
+        axiosWithAuth().post('/classes',classes)
         .then(res=>{
-            const tokenid = res.data.token
-            localStorage.setItem('token',tokenid)
+
+            props.setInstructorClasses(res.data)
+            setClasses({
+                className: "",classType: "",
+                startTime: "", duration: "", 
+                intensityLevel: "",location: "",
+                attendees:"",classMax: "",});
             // history.push('/')
         })
         .catch(err=> { 
             console.log('err',err.response.data.error)
+            
         });
 
-        setClasses({
-            className: "",classType: "",
-            startTime: "", duration: "", 
-            intensityLevel: "",location: "",
-            attendees:"",classMax: "",});
+
     }
 
     return (

@@ -78,7 +78,7 @@ const InstructorClasses = () => {
         axiosWithAuth().post('/classes',classes)
         .then(res=>{
 
-            props.setInstructorClasses(res.data)
+            setInstructorClasses(res.data)
             setClasses({
                 className: "",classType: "",
                 startTime: "", duration: "", 

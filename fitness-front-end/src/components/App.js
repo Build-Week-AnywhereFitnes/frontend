@@ -4,7 +4,7 @@ import Header from "./Header";
 import Login from "./Login";
 import InstructorClasses from "./InstructorClasses";
 import InstructorAuth from "./InstructorAuth";
-import InstructorPage from "./InstructorPage";
+import ClientPage from './ClientPage'
 
 
 function App() {
@@ -15,7 +15,7 @@ function App() {
         <Header/>
 
         <Switch>
-          <Route path='/InstructorPage' component={InstructorPage}/>
+          <Route path='/clientPage' component={ClientPage}/>
           <Route exact path="/instructorAuth" component={InstructorAuth}/>
           <Route exact path="/classes" component={InstructorClasses}/>
           <Route exact path="/login" component={Login}/>

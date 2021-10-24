@@ -8,6 +8,20 @@ const Header = (props) => {
   console.log(props)
 
   return (
+    // <<<<<<< HEAD
+    //     <HeaderStyle>
+    //       <p>Anywhere Fitness</p>
+    //       <MenuStyle>
+
+    //         {/* <li><Link to="/"> Home </Link></li> */}
+    //         <li><Link to="/login"> Login </Link></li>
+    //         <li><Link to="/instructorAuth"> Instructor Authorization</Link></li>
+    //         <li><Link to="/instructor"> Instructor </Link></li>
+    //         <li><Link to='/instructorPage'>Instructor Page</Link></li>
+
+    //       </MenuStyle>
+    //     </HeaderStyle>
+    // =======
     <HeaderStyle>
       <p>Anywhere Fitness</p>
       <MenuStyle>
@@ -15,11 +29,14 @@ const Header = (props) => {
         {/* <li><Link to="/"> Home </Link></li> */}
         <li><Link to="/login"> Login </Link></li>
         <li><Link to="/instructorAuth"> Instructor Authorization</Link></li>
+
         <li><Link to="/instructor"> Instructor </Link></li>
-        <li><Link to='/instructorPage'>Instructor Page</Link></li>
+        <li><Link to='/clientPage'>Client Page</Link></li>
+
 
       </MenuStyle>
     </HeaderStyle>
+    // >>>>>>> de68cf95eae8f98d119e0398e996224389d4a7fe
   );
 }
 

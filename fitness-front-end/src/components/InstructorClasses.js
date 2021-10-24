@@ -2,44 +2,45 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import * as yup from 'yup';
 
-// import axiosWithAuth from './axiosWithAuth'
+import { axiosWithAuth } from './axiosWithAuth'
 
-const Instructor = () => {
+const InstructorClasses = () => {
+    const [instructorClasses, setInstructorClasses] = useState({})
 
     const [buttonDisabled, setButtonDisabled] = useState(true)
 
-    const [instructor, setInstructor] = useState({
-        name: "",
-        type: "",
-        starttime: "",
+    const [classes, setClasses] = useState({
+        className: "",
+        classType: "",
+        startTime: "",
         duration: "",
-        intensity: "",
+        intensityLevel: "",
         location: "",
         attendees: "",
-        maxsize: "",
+        classMax: "",
     });
 
     const [errors, setErrors] = useState({
-        name: "",
-        type: "",
-        starttime: "",
+        className: "",
+        classType: "",
+        startTime: "",
         duration: "",
-        intensity: "",
+        intensityLevel: "",
         location: "",
         attendees: "",
-        maxsize: "",
+        classMax: "",
     })
 
     const formSchema = yup.object().shape({
 
-        name: yup.string().min(2, "Name must be at least 2 characters").required("Name is Required"),
-        type: yup.string().oneOf(["1", "2", "3"], "Enter the type of class you plan to offer"),
-        starttime: yup.date().required("Must enter date").min(Date()),
+        className: yup.string().min(2, "Name must be at least 2 characters").required("Name is Required"),
+        classType: yup.string().oneOf(["1", "2", "3"], "Enter the type of class you plan to offer"),
+        startTime: yup.date().required("Must enter date").min(Date()),
         duration: yup.string().required(" How long will the class last?"),
-        intensity: yup.string().oneOf(["1", "2", "3", "4", "5"], "Please select intensity"),
+        intensityLevel: yup.string().oneOf(["1", "2", "3", "4", "5"], "Please select intensity"),
         location: yup.string().min(2, "Name must be at least 2 characters").required("Location is Required"),
         attendees: yup.number().min(1),
-        maxsize: yup.string().oneOf(["10", "20", "30", "40"], "Please select size of your class"),
+        classMax: yup.string().oneOf(["10", "20", "30", "40"], "Please select size of your class"),
 
     })
 
@@ -58,36 +59,57 @@ const Instructor = () => {
 
     const handleChange = (e) => {
         e.persist();
-        setInstructor({ ...instructor, [e.target.name]: e.target.value });
+        setClasses({ ...classes, [e.target.name]: e.target.value });
         setFormErrors(e.target.name, e.target.value)
-        console.log('instructor', instructor)
+        console.log('classes', classes)
     };
 
     useEffect(() => {
-        formSchema.isValid(instructor).then(valid => {
+        formSchema.isValid(classes).then(valid => {
             setButtonDisabled(!valid);
         });
-    }, [instructor]);
+    }, [classes]);
 
     const formSubmit = (e) => {
-
         e.preventDefault()
-        console.log(instructor)
+        // <<<<<<< HEAD:fitness-front-end/src/components/Instructor.js
+        //         console.log(instructor)
 
-        // axiosWithAuth().post('/instructor',instructor)
-        // .then(res=>{
-        //     const tokenid = res.data.token
-        //     localStorage.setItem('token',tokenid)
-        //     props.settoken(tokenid)
-        //     history.push('/')
-        // })
-        // .catch(err=> { 
-        //     console.log('err',err.response.data.error)
-        //     setError(err.response.data.error)
-        // });
+        //         // axiosWithAuth().post('/instructor',instructor)
+        //         // .then(res=>{
+        //         //     const tokenid = res.data.token
+        //         //     localStorage.setItem('token',tokenid)
+        //         //     props.settoken(tokenid)
+        //         //     history.push('/')
+        //         // })
+        //         // .catch(err=> { 
+        //         //     console.log('err',err.response.data.error)
+        //         //     setError(err.response.data.error)
+        //         // });
 
-        // setInstructor({
-        //     name: "", type: "", starttime:"", duration:"", intensity:"",location:"", attendees:"", maxsize:"" });
+        //         // setInstructor({
+        //         //     name: "", type: "", starttime:"", duration:"", intensity:"",location:"", attendees:"", maxsize:"" });
+        // =======
+
+        // console.log(classes)
+        axiosWithAuth().post('/classes', classes)
+            .then(res => {
+
+                setInstructorClasses(res.data)
+                setClasses({
+                    className: "", classType: "",
+                    startTime: "", duration: "",
+                    intensityLevel: "", location: "",
+                    attendees: "", classMax: "",
+                });
+            })
+            .catch(err => {
+                console.log('err', err.response.data.error)
+
+            });
+
+
+        // >>>>>>> de68cf95eae8f98d119e0398e996224389d4a7fe:fitness-front-end/src/components/InstructorClasses.js
     }
 
     return (
@@ -98,40 +120,40 @@ const Instructor = () => {
 
                     <Label> Name:
                         <Input
-                            id="name"
+                            id="className"
                             type="text"
-                            name="name"
-                            value={instructor.name}
+                            name="className"
+                            value={classes.className}
                             onChange={handleChange}
                         />
-                        <div style={{ color: 'red' }}>{errors.name}</div>
+                        <div style={{ color: 'red' }}>{errors.className}</div>
                     </Label>
 
                     <Label> Type of Class: </Label>
-                    <Select name='type'
-                        value={instructor.type}
+                    <Select name='classType'
+                        value={classes.classType}
                         onChange={handleChange} >
                         <option value='' > -- Pick your type -- </option>
                         <option value='1' > Crossfit </option>
                         <option value='2' > Functional </option>
                         <option value='3' > Weight lifting </option>
                     </Select>
-                    <div style={{ color: 'red' }}>{errors.type}</div>
+                    <div style={{ color: 'red' }}>{errors.classType}</div>
 
                     <Label> Start Time:
                         <Input
                             type="date"
-                            name="starttime"
-                            value={instructor.starttime}
+                            name="startTime"
+                            value={classes.startTime}
                             onChange={handleChange}
                         />
-                        <div style={{ color: 'red' }}>{errors.starttime}</div>
+                        <div style={{ color: 'red' }}>{errors.startTime}</div>
                     </Label>
 
                     <Label> Duration:
                         <Select
                             id="duration" type="text" name="duration"
-                            value={instructor.duration}
+                            value={classes.duration}
                             onChange={handleChange}
                         >
                             <option value="initial"> Pick Duration </option>
@@ -146,8 +168,8 @@ const Instructor = () => {
                     </Label>
 
                     <Label> Intensity:
-                        <Select id="intensity" type="text" name="intensity"
-                            value={instructor.intensity}
+                        <Select id="intensityLevel" type="text" name="intensityLevel"
+                            value={classes.intensityLevel}
                             onChange={handleChange}
                         >
                             <option value="initial"> Pick Intensity </option>
@@ -156,7 +178,7 @@ const Instructor = () => {
                             <option value="3">High Intense</option>
                             <option value="4">Weight lifting</option>
                         </Select>
-                        <div style={{ color: 'red' }}>{errors.intensity}</div>
+                        <div style={{ color: 'red' }}>{errors.intensityLevel}</div>
                     </Label>
 
 
@@ -166,7 +188,7 @@ const Instructor = () => {
                             id="location"
                             type="text"
                             name="location"
-                            value={instructor.location}
+                            value={classes.location}
                             onChange={handleChange}
                         />
                         <div style={{ color: 'red' }}>{errors.location}</div>
@@ -179,15 +201,15 @@ const Instructor = () => {
                             // type="text" 
                             // pattern="[1-9]*"
                             name="attendees"
-                            value={instructor.attendees}
+                            value={classes.attendees}
                             onChange={handleChange}
                         />
                         <div style={{ color: 'red' }}>{errors.attendees}</div>
                     </Label>
 
                     <Label> Max class size:
-                        <Select id="maxsize" type="text" name="maxsize"
-                            value={instructor.maxsize}
+                        <Select id="classMax" type="text" name="classMax"
+                            value={classes.classMax}
                             onChange={handleChange}
                         >
                             <option value="initial"> Pick size of you class </option>
@@ -196,7 +218,7 @@ const Instructor = () => {
                             <option value="30"> Up to 30 </option>
                             <option value="40"> Sports Event </option>
                         </Select>
-                        <div style={{ color: 'red' }}>{errors.maxsize}</div>
+                        <div style={{ color: 'red' }}>{errors.classMax}</div>
                     </Label>
 
 
@@ -208,7 +230,7 @@ const Instructor = () => {
     );
 }
 
-export default Instructor;
+export default InstructorClasses;
 
 // - `Name`
 // - `Type`

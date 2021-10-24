@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import * as yup from 'yup';
-// import axiosWithAuth from './axiosWithAuth'
+import { axiosWithAuth } from './axiosWithAuth'
 
 
 const InstructorAuth = () => {
@@ -65,20 +65,17 @@ const InstructorAuth = () => {
         e.preventDefault()
 
         console.log(instructorAuth)
+        axiosWithAuth().post('/instructorAuth', instructorAuth)
+            .then(res => {
+                const tokenid = res.data.token
+                localStorage.setItem('token', tokenid)
+                // history.push('/')
+            })
+            .catch(err => {
+                console.log('err', err.response.data.error)
 
-
-        // axiosWithAuth().post('/instructor',instructor)
-        // .then(res=>{
-        //     const tokenid = res.data.token
-        //     localStorage.setItem('token',tokenid)
-        //     props.settoken(tokenid)
-        //     history.push('/')
-        // })
-        // .catch(err=> { 
-        //     console.log('err',err.response.data.error)
-        //     setError(err.response.data.error)
-        // });
-        // setInstructorAuth({ name: "", surname:"", ssn:"", email: "", licensenumber: "", phonenumber:""})
+            });
+        setInstructorAuth({ name: "", surname: "", ssn: "", email: "", licensenumber: "", phonenumber: "" })
     }
 
     return (

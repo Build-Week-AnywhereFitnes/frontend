@@ -34,7 +34,7 @@ const Login = (props) => {
             .then((res) => {
                 console.log('RES =', res)
                 localStorage.setItem("token", res.data.token);
-                props.history.push('/Instructor'); // WILL CHANGE THE PUSH *** this is just a placeholder for now.
+                props.history.push('/clientPage');
             })
             .catch((err) => {
                 console.log(err);

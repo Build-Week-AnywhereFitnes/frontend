@@ -1,16 +1,23 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-// import { axiosWithAuth } from './axiosWithAuth';
+import { axiosWithAuth } from './axiosWithAuth';
 
 
+// credentials:
+// NAME: aaron
+// PW: aaronpassword
 
 
-const Login = () => {
+// The url on your end needs to be localhost:3000/api/auth/login
+
+
+const Login = (props) => {
 
     const [login, setLogin] = useState({
         username: "",
         password: "",
     });
+
 
     const handleChange = (e) => {
         setLogin({
@@ -19,28 +26,29 @@ const Login = () => {
         });
     };
 
-    // const handleLogin = (e) => {
-    //     e.preventDefault();
-    //     axiosWithAuth()
-    //         .post("/login", login)
-    //         .then((res) => {
-    //             // console.log('RES =', res)
-    //             localStorage.setItem("token", res.data.token);
-    //             props.history.push('/view');
-    //         })
-    //         .catch((err) => {
-    //             // console.log(err.response.data.error);
-    //             setError(err.response.data.error)
-    //         });
-    // };
+
+    const handleLogin = (e) => {
+        e.preventDefault();
+        axiosWithAuth()
+            .post("/login", login)
+            .then((res) => {
+                console.log('RES =', res)
+                localStorage.setItem("token", res.data.token);
+                props.history.push('/clientPage');
+            })
+            .catch((err) => {
+                console.log(err);
+                // setError(err.response.data.error)
+            });
+    };
 
 
     return (
         <ComponentContainer>
             <ModalContainer>
 
-                {/* <FormGroup onSubmit={handleLogin}> */}
-                <FormGroup>
+                <FormGroup onSubmit={handleLogin}>
+                    {/* <FormGroup> */}
 
                     <Label> Username </Label>
                     <Input

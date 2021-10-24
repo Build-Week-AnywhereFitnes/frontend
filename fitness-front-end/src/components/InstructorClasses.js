@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import * as yup from 'yup';
 
-import axiosWithAuth from './axiosWithAuth'
+import { axiosWithAuth } from './axiosWithAuth'
 
 const InstructorClasses = () => {
-    const [instructorClasses,setInstructorClasses] = useState({})
+    const [instructorClasses, setInstructorClasses] = useState({})
 
     const [buttonDisabled, setButtonDisabled] = useState(true)
 
@@ -57,7 +57,6 @@ const InstructorClasses = () => {
     }
 
 
-
     const handleChange = (e) => {
         e.persist();
         setClasses({ ...classes, [e.target.name]: e.target.value });
@@ -71,26 +70,46 @@ const InstructorClasses = () => {
         });
     }, [classes]);
 
-
     const formSubmit = (e) => {
         e.preventDefault()
-        console.log(classes)
-        axiosWithAuth().post('/classes',classes)
-        .then(res=>{
+        // <<<<<<< HEAD:fitness-front-end/src/components/Instructor.js
+        //         console.log(instructor)
 
-            setInstructorClasses(res.data)
-            setClasses({
-                className: "",classType: "",
-                startTime: "", duration: "", 
-                intensityLevel: "",location: "",
-                attendees:"",classMax: "",});
-        })
-        .catch(err=> { 
-            console.log('err',err.response.data.error)
-            
-        });
+        //         // axiosWithAuth().post('/instructor',instructor)
+        //         // .then(res=>{
+        //         //     const tokenid = res.data.token
+        //         //     localStorage.setItem('token',tokenid)
+        //         //     props.settoken(tokenid)
+        //         //     history.push('/')
+        //         // })
+        //         // .catch(err=> { 
+        //         //     console.log('err',err.response.data.error)
+        //         //     setError(err.response.data.error)
+        //         // });
+
+        //         // setInstructor({
+        //         //     name: "", type: "", starttime:"", duration:"", intensity:"",location:"", attendees:"", maxsize:"" });
+        // =======
+
+        // console.log(classes)
+        axiosWithAuth().post('/classes', classes)
+            .then(res => {
+
+                setInstructorClasses(res.data)
+                setClasses({
+                    className: "", classType: "",
+                    startTime: "", duration: "",
+                    intensityLevel: "", location: "",
+                    attendees: "", classMax: "",
+                });
+            })
+            .catch(err => {
+                console.log('err', err.response.data.error)
+
+            });
 
 
+        // >>>>>>> de68cf95eae8f98d119e0398e996224389d4a7fe:fitness-front-end/src/components/InstructorClasses.js
     }
 
     return (

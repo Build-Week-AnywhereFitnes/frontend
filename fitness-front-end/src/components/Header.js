@@ -15,8 +15,10 @@ const Header = (props) => {
           {/* <li><Link to="/"> Home </Link></li> */}
           <li><Link to="/login"> Login </Link></li>
           <li><Link to="/instructorAuth"> Instructor Authorization</Link></li>
+
           <li><Link to="/instructor"> Instructor </Link></li>
           <li><Link to='/clientPage'>Client Page</Link></li>
+
 
         </MenuStyle>
       </HeaderStyle>

@@ -84,7 +84,6 @@ const InstructorClasses = () => {
                 startTime: "", duration: "", 
                 intensityLevel: "",location: "",
                 attendees:"",classMax: "",});
-            // history.push('/')
         })
         .catch(err=> { 
             console.log('err',err.response.data.error)

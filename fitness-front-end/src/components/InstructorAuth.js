@@ -169,6 +169,7 @@ const Input = styled.input`
     font-size: 1rem;
     padding: 1rem 0;
     width: 100%;
+    margin: 15px
 `
 
 const Label = styled.label`

@@ -83,6 +83,7 @@ const Input = styled.input`
     font-size: 1rem;
     padding: 1rem 0;
     width: 100%;
+    margin: 10px
 `
 
 const Label = styled.label`
@@ -94,6 +95,8 @@ const Label = styled.label`
 const Button = styled.button`
     padding:1rem;
     width: 100%;
+    margin-left:10px;
+
 `
 
 const FormGroup = styled.form`

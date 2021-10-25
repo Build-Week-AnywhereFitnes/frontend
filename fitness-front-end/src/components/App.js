@@ -10,7 +10,7 @@ import ClientPage from './ClientPage'
 function App() {
 
   return (
-    <div>
+    <div className='AppBox'>
 
       <Header />
 

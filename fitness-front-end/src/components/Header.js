@@ -45,7 +45,7 @@ export default Header;
 
 const HeaderStyle = styled.div`
     padding: 1em;
-    background-color: #00FFFF;
+    background-color: #ab5fed;
     display:flex;
     align-items: center;
     justify-content: space-between;
@@ -54,20 +54,25 @@ const HeaderStyle = styled.div`
 
     p {
         font-weight: bold;
-        font-size: 1.9em;
+        font-size: 2.9em;
         font-family: 'Roboto', monospace;
+        margin-top: 45px;
+        margin-right: 100px
     }
 `
 
 const MenuStyle = styled.ul`
   li {
         display: inline-block;
-        padding: 0.3rem 1rem;
-        
+        padding: 10px 20px 10px 20px;
+        margin: 15px;
+        border: 2px solid black;
+         background-color: #bf82f5;
         a {
             text-decoration: none;
             color: black;
-            font-size: 1em;
+            font-size: 1.5rem;
+           
         }
     }
 `
